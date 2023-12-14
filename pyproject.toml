@@ -1,0 +1,15 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "Murph Murphy", email = "murph.murphy@ironcorelabs.com"},
+]
+dependencies = [
+    "marqo>=2.1.0",
+    "ironcore-alloy>=0.9.1",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+

@@ -1,0 +1,24 @@
+version: '3'
+services:
+  marqo-os:
+    image: "marqoai/marqo-os:0.0.3"
+    ports:
+    - "9200:9200"
+    - "9600:9600"
+    environment:
+      - discovery.type=single-node
+    healthcheck:
+     test: curl -s https://marqo-os:9200 >/dev/null || exit 1
+     interval: 30s
+     timeout: 10s
+     retries: 50
+  marqa:
+    image: "marqoai/marqo:latest"
+    ports:
+    - "8882:8882"
+    environment: 
+      OPENSEARCH_URL: "https://marqo-os:9200"
+    depends_on:
+      marqo-os:
+        condition: service_healthy
+
