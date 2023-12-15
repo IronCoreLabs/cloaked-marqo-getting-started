@@ -8,11 +8,11 @@ services:
     environment:
       - discovery.type=single-node
     healthcheck:
-     test: curl -s https://marqo-os:9200 >/dev/null || exit 1
-     interval: 30s
-     timeout: 10s
+     test: ["CMD-SHELL", "curl -X GET 'https://marqo-os:9200/_cluster/health' --insecure -H 'Content-Type: application/json' -u admin:admin >/dev/null || exit 1"]
+     interval: 5s
+     timeout: 3s
      retries: 50
-  marqa:
+  marqo:
     image: "marqoai/marqo:latest"
     ports:
     - "8882:8882"
