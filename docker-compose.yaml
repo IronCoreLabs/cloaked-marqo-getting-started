@@ -18,6 +18,8 @@ services:
     - "8882:8882"
     environment: 
       OPENSEARCH_URL: "https://marqo-os:9200"
+      # supress insecure warning for local dev
+      PYTHONWARNINGS: "ignore:Unverified HTTPS request"
     depends_on:
       marqo-os:
         condition: service_healthy
