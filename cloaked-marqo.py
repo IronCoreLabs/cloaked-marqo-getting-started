@@ -86,7 +86,10 @@ async def main() -> None:
     ##
     mq = marqo.Client(url="http://localhost:8882")
 
-    mq.index("my-first-index").delete()
+    try:
+        mq.index("my-first-index").delete()
+    except Exception as E:
+        pass
 
     index_settings = {
         "index_defaults": {
